@@ -20,22 +20,28 @@ export class Login {
   protected emailField!: any;
   protected passwordField!: any;
 
+  protected showModal = true;
+
   constructor(private fb: FormBuilder, private router: Router) {
     this.form = this.fb.group({
-      emailField: [null, [Validators.required, Validators.email]],
-      passwordField: [null, [Validators.required]],
+      emailField: ['teste@exemplo.com', [Validators.required, Validators.email]],
+      passwordField: ['123456', [Validators.required]],
     })
 
     this.emailField = this.form.get("emailField");
     this.passwordField = this.form.get("passwordField");
   }
 
+  protected closeModal() {
+    this.showModal = false;
+  }
+
   protected submit() {
     this.form.markAllAsTouched();
 
-    if(this.form.invalid) return
+    if (this.form.invalid) return
 
-    const {emailField, passwordField} = this.form.getRawValue();
+    const { emailField, passwordField } = this.form.getRawValue();
     console.log(emailField);
 
     this.router.navigate(['register']);
