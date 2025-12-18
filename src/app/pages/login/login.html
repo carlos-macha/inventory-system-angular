@@ -7,14 +7,14 @@
       <input formControlName="emailField" custom-input id="email" type="email">
 
       @if (emailField?.touched) {
-        <div class="error-message-container">
-          @if (emailField?.hasError("email")) {
-          <span>Email incorreto</span>
-          }
-          @if (emailField?.hasError("required")) {
-          <span>Campo obrigatório</span>
-          }
-        </div>
+      <div class="error-message-container">
+        @if (emailField?.hasError("email")) {
+        <span>Email incorreto</span>
+        }
+        @if (emailField?.hasError("required")) {
+        <span>Campo obrigatório</span>
+        }
+      </div>
       }
     </div>
 
@@ -23,11 +23,11 @@
       <input formControlName="passwordField" custom-input id="password" type="password">
 
       @if (passwordField?.touched) {
-        <div class="error-message-container">
-          @if (passwordField?.hasError("required")) {
-          <span>Campo obrigatório</span>
-          }
-        </div>
+      <div class="error-message-container">
+        @if (passwordField?.hasError("required")) {
+        <span>Campo obrigatório</span>
+        }
+      </div>
       }
     </div>
 
@@ -38,5 +38,18 @@
 </div>
 
 <div class="right-side"></div>
+
+@if (showModal) {
+<div class="modal-backdrop">
+  <div class="modal">
+    <h2>Sistema de Estoque</h2>
+    <p>Este é um sistema de demonstração.
+      Para visualizar o funcionamento, basta clicar em Entrar — não é necessário informar senha.
+      Nenhum dado é salvo ou enviado ao servidor.</p>
+
+    <button (click)="closeModal()">Entendi</button>
+  </div>
+</div>
+}
 
 <router-outlet />
