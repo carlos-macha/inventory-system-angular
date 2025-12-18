@@ -1,0 +1,42 @@
+<div class="left-side">
+  <h1>Sistema de Estoque</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="wrapper-field">
+      <label for="email">Email</label>
+      <input formControlName="emailField" custom-input id="email" type="email">
+
+      @if (emailField?.touched) {
+        <div class="error-message-container">
+          @if (emailField?.hasError("email")) {
+          <span>Email incorreto</span>
+          }
+          @if (emailField?.hasError("required")) {
+          <span>Campo obrigatório</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="wrapper-field">
+      <label for="password">Senha</label>
+      <input formControlName="passwordField" custom-input id="password" type="password">
+
+      @if (passwordField?.touched) {
+        <div class="error-message-container">
+          @if (passwordField?.hasError("required")) {
+          <span>Campo obrigatório</span>
+          }
+        </div>
+      }
+    </div>
+
+    <button type="submit">
+      Entrar
+    </button>
+  </form>
+</div>
+
+<div class="right-side"></div>
+
+<router-outlet />

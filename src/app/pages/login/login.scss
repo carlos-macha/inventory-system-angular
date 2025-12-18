@@ -1,0 +1,60 @@
+:host {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 71px;
+  flex: 1;
+  background-color: #181818;
+  padding: 10px;
+
+  h1 {
+    color: white;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    width: 100%;
+    max-width: 75%;
+
+    button {
+      padding: 17px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    .wrapper-field {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      label {
+        color: white;
+        font-size: 13px;
+      }
+
+      .error-message-container span {
+        color: red;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.right-side {
+  flex: 2;
+  background-image: url(../../../../public/inventory-image.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

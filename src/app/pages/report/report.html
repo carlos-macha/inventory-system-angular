@@ -1,0 +1,60 @@
+<div class="register">
+  <header>
+    <h1>Relatório</h1>
+
+    <div class="menu-container">
+      <button class="icon-button material-icons" routerLink="/register" aria-label="Cadastrar">
+        inventory_2
+      </button>
+      <button class="icon-button material-icons" routerLink="/" aria-label="Sair">
+        logout
+      </button>
+    </div>
+  </header>
+
+  <div class="search-container">
+    <h2>Pesquisar</h2>
+    <form (ngSubmit)="filterItems()">
+      <div class="wrapper-field">
+        <label for="searchCode">Código Único</label>
+        <input id="searchCode" name="searchCode" [(ngModel)]="searchCode" type="text">
+      </div>
+
+      <div class="wrapper-field">
+        <label for="startDate">Data inicial</label>
+        <input id="startDate" name="startDate" [(ngModel)]="startDate" type="date">
+      </div>
+
+      <div class="wrapper-field">
+        <label for="endDate">Data final</label>
+        <input id="endDate" name="endDate" [(ngModel)]="endDate" type="date">
+      </div>
+
+      <button type="submit">Pesquisar</button>
+      <button type="button" (click)="clearFilters()">Limpar</button>
+    </form>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Código Único</th>
+          <th>Nome</th>
+          <th>Quantidade</th>
+          <th>Data</th>
+          <th>Movimentação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredItems">
+          <td>{{ item.code }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.amount }}</td>
+          <td>{{ item.date | date:'dd/MM/yyyy' }}</td>
+          <td>{{ item.movement }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

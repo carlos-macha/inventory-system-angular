@@ -1,0 +1,119 @@
+<div class="register">
+  <header>
+    <h1>Tela de Registro</h1>
+    <div class="menu-container">
+      <button class="icon-button material-icons" routerLink="/report" aria-label="Relatórios">
+        bar_chart
+      </button>
+      <button class="icon-button material-icons" routerLink="/" aria-label="Sair">
+        logout
+      </button>
+    </div>
+  </header>
+
+  <div class="register-container">
+    <h2>Cadastro</h2>
+    <form (ngSubmit)="addItem()" #registerForm="ngForm">
+      <div class="wrapper-field">
+        <label for="code">Código Único</label>
+        <input id="code" name="code" [(ngModel)]="newItem.code" type="text" required>
+      </div>
+      <div class="wrapper-field">
+        <label for="name">Nome</label>
+        <input id="name" name="name" [(ngModel)]="newItem.name" type="text" required>
+      </div>
+      <div class="wrapper-field">
+        <label for="amount">Quantidade</label>
+        <input id="amount" name="amount" [(ngModel)]="newItem.amount" type="number" required min="0">
+      </div>
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+
+  <div class="search-container">
+    <h2>Pesquisar</h2>
+    <form (ngSubmit)="filterItems()">
+      <div class="wrapper-field">
+        <label for="searchCode">Código Único</label>
+        <input id="searchCode" name="searchCode" [(ngModel)]="searchCode" type="text">
+      </div>
+      <button type="submit">Pesquisar</button>
+      <button type="button" (click)="clearSearch()">Limpar</button>
+    </form>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Código Único</th>
+          <th>Nome</th>
+          <th>Quantidade</th>
+          <th>Editar</th>
+          <th>Entrada</th>
+          <th>Baixa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredItems; let i = index">
+          <td>{{ item.code }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.amount }}</td>
+          <td>
+            <button class="icon-button material-icons" (click)="openEditModal(item)">edit</button>
+          </td>
+          <td>
+            <button class="icon-button material-icons" (click)="openAddModal(item)">file_upload</button>
+          </td>
+          <td>
+            <button class="icon-button material-icons" (click)="openSubtractModal(item)">download</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="modal" *ngIf="editModalVisible">
+    <div class="modal-content">
+      <h3>Editar Item</h3>
+      <div class="wrapper-field">
+        <label>Código Único</label>
+        <input [(ngModel)]="selectedItem.code" type="text">
+      </div>
+      <div class="wrapper-field">
+        <label>Nome</label>
+        <input [(ngModel)]="selectedItem.name" type="text">
+      </div>
+      <div class="wrapper-field">
+        <label>Quantidade</label>
+        <input [(ngModel)]="selectedItem.amount" type="number" min="0">
+      </div>
+      <button (click)="saveEdit()">Salvar</button>
+      <button (click)="closeEditModal()">Cancelar</button>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="addModalVisible">
+    <div class="modal-content">
+      <h3>Adicionar Quantidade</h3>
+      <div class="wrapper-field">
+        <label>Quantidade</label>
+        <input [(ngModel)]="tempAmount" type="number" min="0">
+      </div>
+      <button (click)="addQuantity()">Adicionar</button>
+      <button (click)="closeAddModal()">Cancelar</button>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="subtractModalVisible">
+    <div class="modal-content">
+      <h3>Baixar Quantidade</h3>
+      <div class="wrapper-field">
+        <label>Quantidade</label>
+        <input [(ngModel)]="tempAmount" type="number" min="0">
+      </div>
+      <button (click)="subtractQuantity()">Baixar</button>
+      <button (click)="closeSubtractModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
